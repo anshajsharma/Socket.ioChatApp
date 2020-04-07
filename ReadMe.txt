@@ -16,5 +16,20 @@ io.emit                 will send message to all user connected(including sender
 socket.broadcast.emit   will send message to all except sender..
 socket.emit             will send message only to current user..
 
+installed "expect mocha" for testing purpose...
+i.e. testing functions before using it...
 
+Used Moment.js for handeling timestamps...
+// Used moment.js library to format time from timestamp
+// moment(message.createdAt).format('LT')  9:57AM
+
+
+// Used Mustache.js for rendering script containing HTML..
+// Mustache.render(template, {
+    from: message.from,
+    text: message.text,
+    createdAt: formattedTime
+  });
+  // Here templete is 'HTML' template which can contain 
+       {{from}} {{text}} etc because we are proving these variable while rendering....
 

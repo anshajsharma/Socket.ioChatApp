@@ -24,7 +24,7 @@ socket.on('disconnect', function() {
 });
 
 socket.on('updateUsersList', function (users) {
-  let ol = document.createElement('ol');
+  let ol = document.createElement('ol');  // Will create new order list
 
   users.forEach(function (user) {
     let li = document.createElement('li');
@@ -38,7 +38,7 @@ socket.on('updateUsersList', function (users) {
 })
 
 socket.on('newMessage', function(message) {
-  const formattedTime = moment(message.createdAt).format('LT');
+  const formattedTime = moment(message.createdAt).format('LT');  // Used moment.js library to format time from timestamp
   const template = document.querySelector('#message-template').innerHTML;
   const html = Mustache.render(template, {
     from: message.from,
@@ -54,7 +54,7 @@ socket.on('newMessage', function(message) {
 });
 
 socket.on('newLocationMessage', function(message) {
-  const formattedTime = moment(message.createdAt).format('LT');
+  const formattedTime = moment(message.createdAt).format('LT');   // Used moment.js library to format time from timestamp
   console.log("newLocationMessage", message);
 
   const template = document.querySelector('#location-message-template').innerHTML;
@@ -71,7 +71,7 @@ socket.on('newLocationMessage', function(message) {
   scrollToBottom();
 });
 
-document.querySelector('#submit-btn').addEventListener('click', function(e) {
+document.querySelector('#submit-btn').addEventListener('click', e => {
   e.preventDefault();
 
   socket.emit("createMessage", {
@@ -81,7 +81,9 @@ document.querySelector('#submit-btn').addEventListener('click', function(e) {
   })
 })
 
-document.querySelector('#send-location').addEventListener('click', function(e) {
+
+ // Obtaining and sending data of location to server
+document.querySelector('#send-location').addEventListener('click', e => {
   if (!navigator.geolocation) {
     return alert('Geolocation is not supported by your browser.')
   }
